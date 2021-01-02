@@ -10,6 +10,7 @@
     </x-slot>
 
     <div>
-        <livewire:table.main name="user" :model="$user" />
-    </div>
+        <livewire:table.main name="user" :model="$user" /> 
+        //Name user merupakan Case switch di Main.php
+        //Model user merupakan tempat pengisian nama model di Main.php
 </x-app-layout>

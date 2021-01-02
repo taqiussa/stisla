@@ -3,20 +3,29 @@ $links = [
     [
         "href" => "dashboard",
         "text" => "Dashboard",
+        "icon" => "fas fa-fire",
         "is_multi" => false,
     ],
     [
         "href" => [
             [
                 "section_text" => "User",
+                "section_icon" => "fas fa-user",
                 "section_list" => [
                     ["href" => "user", "text" => "Data User"],
                     ["href" => "user.new", "text" => "Buat User"]
                 ]
             ]
         ],
-        "text" => "User",
+        "text" => "Admin User",
         "is_multi" => true,
+    ],
+    [
+        "href" => "pegawai",
+        "text" => "Pegawai",
+        "icon" => "fas fa-users",
+        "is_multi" => false,
+        
     ],
 ];
 $navigation_links = array_to_object($links);
@@ -37,7 +46,7 @@ $navigation_links = array_to_object($links);
             <li class="menu-header">{{ $link->text }}</li>
             @if (!$link->is_multi)
             <li class="{{ Request::routeIs($link->href) ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route($link->href) }}"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                <a class="nav-link" href="{{ route($link->href) }}"><i class="{{ $link->icon }}"></i><span>{{ $link->text }}</span></a>
             </li>
             @else
                 @foreach ($link->href as $section)
@@ -50,7 +59,7 @@ $navigation_links = array_to_object($links);
                     @endphp
 
                     <li class="dropdown {{ ($is_active) ? 'active' : '' }}">
-                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-chart-bar"></i> <span>{{ $section->section_text }}</span></a>
+                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="{{ $section->section_icon }}"></i> <span>{{ $section->section_text }}</span></a>
                         <ul class="dropdown-menu">
                             @foreach ($section->section_list as $child)
                                 <li class="{{ Request::routeIs($child->href) ? 'active' : '' }}"><a class="nav-link" href="{{ route($child->href) }}">{{ $child->text }}</a></li>
