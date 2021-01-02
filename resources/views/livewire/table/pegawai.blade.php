@@ -21,9 +21,9 @@
             </tr>
         </x-slot>
         <x-slot name="body">
-            @foreach ($pegawais as $p)
+            @foreach ($pegawais as $key => $p)
                 <tr x-data="window.__controller.dataTableController({{ $p->id }})">
-                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $pegawais->firstItem() + $key }}</td>
                     <td>{{ $p->nama }}</td>
                     <td>{{ $p->tempat }}</td>
                     <td>{{ $p->created_at }}</td>
