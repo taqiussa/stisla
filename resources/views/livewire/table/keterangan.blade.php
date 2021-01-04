@@ -1,17 +1,21 @@
 <div>
-    <x-data-tableku :data="$data" :model="$pegawais">
+    <x-data-tableku :data="$data" :model="$keterangans">
         <x-slot name="head">
             <tr>
-                <th><a wire:click.prevent="sortBy('nama')" role="button" href="#">
+                <th><a wire:click.prevent="sortBy('namaket')" role="button" href="#">
                     #
                 </a></th>
-                <th><a wire:click.prevent="sortBy('nama')" role="button" href="#">
-                    Name
-                    @include('components.sort-icon', ['field' => 'nama'])
+                <th><a wire:click.prevent="sortBy('namaket')" role="button" href="#">
+                    Keterangan
+                    @include('components.sort-icon', ['field' => 'namaket'])
                 </a></th>
-                <th><a wire:click.prevent="sortBy('tempat')" role="button" href="#">
-                    Tempat
-                    @include('components.sort-icon', ['field' => 'tempat'])
+                <th><a wire:click.prevent="sortBy('jenis')" role="button" href="#">
+                    Jenis
+                    @include('components.sort-icon', ['field' => 'jenis'])
+                </a></th>
+                <th><a wire:click.prevent="sortBy('harga')" role="button" href="#">
+                    Harga
+                    @include('components.sort-icon', ['field' => 'harga'])
                 </a></th>
                 <th><a wire:click.prevent="sortBy('created_at')" role="button" href="#">
                     Tanggal Dibuat
@@ -21,11 +25,12 @@
             </tr>
         </x-slot>
         <x-slot name="body">
-            @foreach ($pegawais as $key => $p)
+            @foreach ($keterangans as $key => $p)
                 <tr x-data="window.__controller.dataTableController({{ $p->id }})">
-                    <td>{{ $pegawais->firstItem() + $key }}</td>
-                    <td>{{ $p->nama }}</td>
-                    <td>{{ $p->tempat }}</td>
+                    <td>{{ $keterangans->firstItem() + $key }}</td>
+                    <td>{{ $p->namaket }}</td>
+                    <td>{{ $p->jenis }}</td>
+                    <td>{{ $p->harga }}</td>
                     <td>{{ $p->created_at }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" wire:click="edit({{ $p->id }})" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
@@ -37,6 +42,6 @@
     </x-data-tableku>
     <x-notify-message on="saved" type="success" :message="__($button['submit_response_notyf'])" />
     @if ($isOpen)
-    @include('livewire.modal.modal-pegawai')
+    @include('livewire.modal.modal-keterangan')
     @endif
 </div>

@@ -2,23 +2,23 @@
 
 namespace App\Http\Livewire\Table;
 
-use App\Models\Pegawai;
+use App\Models\Pemasukan;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Tablepegawai extends Component
+class Tablepemasukan extends Component
 {
     use WithPagination;
 
     public $model;
     public $name;
-    public $pegawai;
-    public $idpegawai = '';
+    public $pemasukan;
+    public $idpemasukan = '';
     public $nama = '';
     public $tempat = '';
     public $isOpen = 0;
     public $perPage = 10;
-    public $sortField = "nama";
+    public $sortField = "id";
     public $sortAsc = false;
     public $search = '';
     public $action;
@@ -50,17 +50,17 @@ class Tablepegawai extends Component
     public function get_pagination_data()
     {
         switch ($this->name) {
-            case 'pegawai':
-                $pegawais = $this->model::search($this->search)
+            case 'pemasukan':
+                $pemasukans = $this->model::search($this->search)
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage);
                 return [
-                    "view" => 'livewire.table.pegawai', //resource view
-                    "pegawais" => $pegawais, //users dikirm ke user.blade ke data tabel
+                    "view" => 'livewire.table.pemasukan', //resource view
+                    "pemasukans" => $pemasukans, //users dikirm ke user.blade ke data tabel
                     "data" => array_to_object([
                         'href' => [
                             'create_new' => 'showModal()',
-                            'create_new_text' => 'Tambah Pegawai',
+                            'create_new_text' => 'Tambah pemasukan',
                             'export' => '#',
                             'export_text' => 'Export'
                         ]
@@ -95,7 +95,7 @@ class Tablepegawai extends Component
     {
         $this->nama = '';
         $this->tempat = '';
-        $this->idpegawai = '';
+        $this->idpemasukan = '';
     }
     public function store()
     {
@@ -105,7 +105,7 @@ class Tablepegawai extends Component
             'tempat' => $this->tempat,
         ];
         $this->validate();
-        $this->model::updateOrCreate(['id' => $this->idpegawai], $data);
+        $this->model::updateOrCreate(['id' => $this->idpemasukan], $data);
         $this->clearVar();
         $this->emit('saved'); /* Untuk Menampilkan Message Toast ke x-jet-nofity-message di modal */
         $this->hideModal();
@@ -113,14 +113,14 @@ class Tablepegawai extends Component
     public function edit($id)
     {
         $cari = $this->model::findOrFail($id);
-        $this->idpegawai = $id;
+        $this->idpemasukan = $id;
         $this->nama = $cari->nama;
         $this->tempat = $cari->tempat;
         $this->showModal();
     }
     public function mount()
     {
-        $this->button = create_button($this->action, "Pegawai");
+        $this->button = create_button($this->action, "pemasukan");
         // this button untuk menampilkan emit atau message toast 
     }
     public function render()

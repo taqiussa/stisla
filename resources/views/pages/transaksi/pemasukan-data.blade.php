@@ -10,7 +10,7 @@
     </x-slot>
 
     <div>
-        <livewire:table.tablepegawai name="pegawai" :model="$pegawai" /> 
+        <livewire:table.tablepemasukan name="pemasukan" :model="$pemasukan" /> 
         {{-- Name user merupakan Case switch di tablepegawai.php --}}
         {{-- Model user merupakan tempat pengisian nama model di tablepegawai.php --}}
     </div>

@@ -2,30 +2,31 @@
 
 namespace App\Http\Livewire\Table;
 
-use App\Models\Pegawai;
+use App\Models\Keterangan;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Tablepegawai extends Component
+class Tableketerangan extends Component
 {
     use WithPagination;
 
     public $model;
     public $name;
-    public $pegawai;
-    public $idpegawai = '';
-    public $nama = '';
-    public $tempat = '';
+    public $keterangan;
+    public $idketerangan = '';
+    public $namaket = '';
+    public $harga = '';
+    public $jenis = '';
     public $isOpen = 0;
     public $perPage = 10;
-    public $sortField = "nama";
+    public $sortField = "namaket";
     public $sortAsc = false;
     public $search = '';
     public $action;
     public $button;
     protected $listeners = ["deleteItem" => "delete_item"];
-    protected $rules = ['nama' => 'required', 'tempat' => 'required'];
-    protected $messages = ['nama.required' => 'Nama tidak boleh kosong', 'tempat.required' => 'Tempat tidak boleh kosong'];
+    protected $rules = ['namaket' => 'required', 'harga' => 'required'];
+    protected $messages = ['namaket.required' => 'Keterangan tidak boleh kosong', 'harga.required' => 'Harga tidak boleh kosong'];
     public function showModal()
     {
         $this->isOpen = true;
@@ -50,17 +51,17 @@ class Tablepegawai extends Component
     public function get_pagination_data()
     {
         switch ($this->name) {
-            case 'pegawai':
-                $pegawais = $this->model::search($this->search)
+            case 'keterangan':
+                $keterangans = $this->model::search($this->search)
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage);
                 return [
-                    "view" => 'livewire.table.pegawai', //resource view
-                    "pegawais" => $pegawais, //users dikirm ke user.blade ke data tabel
+                    "view" => 'livewire.table.keterangan', //resource view
+                    "keterangans" => $keterangans, //users dikirm ke user.blade ke data tabel
                     "data" => array_to_object([
                         'href' => [
                             'create_new' => 'showModal()',
-                            'create_new_text' => 'Tambah Pegawai',
+                            'create_new_text' => 'Tambah keterangan',
                             'export' => '#',
                             'export_text' => 'Export'
                         ]
@@ -93,19 +94,21 @@ class Tablepegawai extends Component
     }
     public function clearVar()
     {
-        $this->nama = '';
-        $this->tempat = '';
-        $this->idpegawai = '';
+        $this->namaket = '';
+        $this->harga = '';
+        $this->jenis = '';
+        $this->idketerangan = '';
     }
     public function store()
     {
 
         $data = [
-            'nama' => $this->nama,
-            'tempat' => $this->tempat,
+            'namaket' => $this->namaket,
+            'harga' => $this->harga,
+            'jenis' => $this->jenis,
         ];
         $this->validate();
-        $this->model::updateOrCreate(['id' => $this->idpegawai], $data);
+        $this->model::updateOrCreate(['id' => $this->idketerangan], $data);
         $this->clearVar();
         $this->emit('saved'); /* Untuk Menampilkan Message Toast ke x-jet-nofity-message di modal */
         $this->hideModal();
@@ -113,14 +116,15 @@ class Tablepegawai extends Component
     public function edit($id)
     {
         $cari = $this->model::findOrFail($id);
-        $this->idpegawai = $id;
-        $this->nama = $cari->nama;
-        $this->tempat = $cari->tempat;
+        $this->idketerangan = $id;
+        $this->namaket = $cari->namaket;
+        $this->harga = $cari->harga;
+        $this->jenis = $cari->jenis;
         $this->showModal();
     }
     public function mount()
     {
-        $this->button = create_button($this->action, "Pegawai");
+        $this->button = create_button($this->action, "keterangan");
         // this button untuk menampilkan emit atau message toast 
     }
     public function render()

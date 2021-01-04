@@ -1,9 +1,22 @@
 @php
 $links = [
+    // [
+    //     "href" => "dashboard",
+    //     "header_text" => "Dashboard",
+    //     "text" => "Dashboard",
+    //     "icon" => "fas fa-fire",
+    //     "is_multi" => false,
+    // ],
     [
-        "href" => "dashboard",
-        "text" => "Dashboard",
-        "icon" => "fas fa-fire",
+        "list" =>[
+            [
+                "text" => "Dashboar",
+                "icon" => "fas fa-fire",
+                "href" => "dashboard",
+                "is_dropdown" => false,
+            ],
+        ],  
+        "header_text" => "Dashboard",
         "is_multi" => false,
     ],
     [
@@ -17,13 +30,34 @@ $links = [
                 ]
             ]
         ],
-        "text" => "Admin User",
+        "header_text" => "Admin User",
         "is_multi" => true,
     ],
     [
-        "href" => "pegawai",
-        "text" => "Pegawai",
-        "icon" => "fas fa-users",
+        "list" => [
+            [
+                "section_list" => [
+                    ["href" => "pemasukan", "text" => "Pemasukan"],
+                    ["href" => "user.new", "text" => "Pengeluaran"]
+                ],
+                "text" => "Transaksi",
+                "icon" => "fas fa-plus-square",
+                "is_dropdown" => true,
+            ],
+            [
+                "text" => "Pegawai",
+                "icon" => "fas fa-users",
+                "href" => "pegawai",
+                "is_dropdown" => false,
+            ],
+            [
+                "text" => "Keterangan",
+                "icon" => "fas fa-tags",
+                "href" => "keterangan",
+                "is_dropdown" => false,
+            ]
+        ],
+        "header_text" => "Fiter Barber",
         "is_multi" => false,
         
     ],
@@ -43,11 +77,24 @@ $navigation_links = array_to_object($links);
         </div>
         @foreach ($navigation_links as $link)
         <ul class="sidebar-menu">
-            <li class="menu-header">{{ $link->text }}</li>
+            <li class="menu-header">{{ $link->header_text }}</li>
             @if (!$link->is_multi)
-            <li class="{{ Request::routeIs($link->href) ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route($link->href) }}"><i class="{{ $link->icon }}"></i><span>{{ $link->text }}</span></a>
-            </li>
+                @foreach ($link->list as $item)
+                    @if (!$item->is_dropdown)
+                        <li class="{{ Request::routeIs($item->href) ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route($item->href) }}"><i class="{{ $item->icon }}"></i><span>{{ $item->text }}</span></a>
+                        </li>
+                    @else
+                        <li class="dropdown {{ ($is_active) ? 'active' : '' }}">
+                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="{{ $item->icon }}"></i> <span>{{ $item->text }}</span></a>
+                            <ul class="dropdown-menu">
+                                @foreach ($item->section_list as $child)
+                                    <li class="{{ Request::routeIs($child->href) ? 'active' : '' }}"><a class="nav-link" href="{{ route($child->href) }}">{{ $child->text }}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endif
+                @endforeach
             @else
                 @foreach ($link->href as $section)
                     @php

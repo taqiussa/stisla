@@ -39,7 +39,7 @@
         </div>
 
         <div id="table_pagination" class="py-3">
-            {{ $model->onEachSide(1)->links() }}
+            {{-- {{ $model->onEachSide(1)->links() }} --}}
         </div>
     </div>
 </div>

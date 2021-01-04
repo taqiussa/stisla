@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\KeteranganController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +22,11 @@ Route::get('/', function () {
 });
 
 Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
-    Route::view('/dashboard', "dashboard")->name('dashboard');
-    Route::get('/user', [UserController::class, "index_view"])->name('user');
-    Route::get('/pegawai', [PegawaiController::class, "index_view"])->name('pegawai');
-    Route::view('/user/new', "pages.user.user-new")->name('user.new');
-    Route::view('/user/edit/{userId}', "pages.user.user-edit")->name('user.edit');
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/user', [UserController::class, 'index_view'])->name('user');
+    Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai');
+    Route::get('/keterangan', [KeteranganController::class, 'index'])->name('keterangan');
+    Route::get('/pemasukan', [PemasukanController::class, 'index'])->name('pemasukan');
+    Route::view('/user/new', 'pages.user.user-new')->name('user.new');
+    Route::view('/user/edit/{userId}', 'pages.user.user-edit')->name('user.edit');
 });
