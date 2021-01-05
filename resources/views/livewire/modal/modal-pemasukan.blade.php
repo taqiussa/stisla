@@ -21,15 +21,18 @@
                             @enderror
                             <select wire:model="pegawai_id" class="w-1/2 px-2 py-2 border rounded shadow appearance-non">
                                 <option value="">Pilih Pegawai</option>
-                                <option >1</option>
-                                <option >2</option>
+                                @foreach ($pegawai as $p)
+                                <option value="{{ $p->id }}">{{ $p->nama }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="py-2">
                             <select wire:model="keterangan_id" class="w-1/3 px-2 py-2 mx-4 border rounded shadow appearance-non">
                                 <option value="">Pilih Keterangan</option>
-                                <option >1</option>
-                                <option >2</option>
+                                @foreach ($ket as $k)
+                                <option value="{{ $k->id }}">{{ $k->namaket }}</option>
+                                @endforeach
+                            
                             </select>
                             <input wire:model="harga" type="text" class="w-1/2 px-2 py-2 border rounded shadow appearance-non" id="harga" autocomplete="off" placeholder="Harga">
                             @error('harga')
@@ -41,7 +44,7 @@
                             @error('jumlah')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror
-                            <input wire:model="total" type="text" class="w-1/2 px-2 py-2 border rounded shadow appearance-non" id="total" autocomplete="off" placeholder="Total">
+                            <input wire:model="total" type="text" class="w-1/2 px-2 py-2 border rounded shadow appearance-non" id="total" readonly placeholder="Total">
                             @error('total')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror

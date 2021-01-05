@@ -2,21 +2,14 @@
     <x-data-tableku :data="$data" :model="$pemasukans">
         <x-slot name="head">
             <tr>
-                <th><a wire:click.prevent="sortBy('nama')" role="button" href="#">
-                    #
-                </a></th>
-                <th><a wire:click.prevent="sortBy('nama')" role="button" href="#">
-                    Name
-                    @include('components.sort-icon', ['field' => 'pegawai.nama'])
-                </a></th>
-                <th><a wire:click.prevent="sortBy('tempat')" role="button" href="#">
-                    Tempat
-                    @include('components.sort-icon', ['field' => 'tempat'])
-                </a></th>
-                <th><a wire:click.prevent="sortBy('created_at')" role="button" href="#">
-                    Tanggal Dibuat
-                    @include('components.sort-icon', ['field' => 'created_at'])
-                </a></th>
+                <th>#</th>
+                <th><a wire:click.prevent="sortBy('tanggal')" role="button" href="#">
+                    Tanggal
+                    @include('components.sort-icon', ['field' => 'tanggal'])</th>
+                <th>Nama</th>
+                <th>Keterangan</th>
+                <th>Jumlah</th>
+                <th>Komentar</th>
                 <th>Action</th>
             </tr>
         </x-slot>
@@ -24,9 +17,11 @@
             @foreach ($pemasukans as $key => $p)
                 <tr x-data="window.__controller.dataTableController({{ $p->id }})">
                     <td>{{ $pemasukans->firstItem() + $key }}</td>
+                    <td>{{ date('D, d M y',$p->tanggal) }}</td>
                     <td>{{ $p->pegawai->nama }}</td>
-                    <td>{{ $p->pegawai->tempat }}</td>
                     <td>{{ $p->keterangan->namaket }}</td>
+                    <td>{{ $p->jumlah }}</td>
+                    <td>{{ $p->komentar }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" wire:click="edit({{ $p->id }})" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
                         <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="text-red-500 fa fa-16px fa-trash"></i></a>

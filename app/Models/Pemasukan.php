@@ -12,11 +12,11 @@ class Pemasukan extends Model
     use HasFactory;
     protected $table = 'pemasukan';
     protected $fillable = ['tanggal', 'pegawai_id', 'keterangan_id', 'jumlah', 'harga', 'total', 'komentar'];
-    public function getTanggalAttribute()
-    {
-        return Carbon::parse($this->attributes['tanggal'])
-            ->translatedFormat('l, d M y');
-    }
+    // public function getTanggalAttribute()
+    // {
+    //     return Carbon::parse($this->attributes['tanggal'])
+    //         ->translatedFormat('l, d M y');
+    // }
     public static function search($query)
     {
         return empty($query) ? static::query()
@@ -30,12 +30,12 @@ class Pemasukan extends Model
     {
         return $this->belongsTo(Keterangan::class);
     }
-    public static function pemasukanjoin()
-    {
-        return DB::table('pemasukan')
-            ->join('pegawai', 'pemasukan.pegawai_id', '=', 'pegawai.id')
-            ->join('keterangan', 'pemasukan.keterangan_id', '=', 'keterangan.id')
-            ->select('pemasukan.*', 'pegawai.nama', 'keterangan.namaket')
-            ->get();
-    }
+    // public static function pemasukanjoin()
+    // {
+    //     return DB::table('pemasukan')
+    //         ->join('pegawai', 'pemasukan.pegawai_id', '=', 'pegawai.id')
+    //         ->join('keterangan', 'pemasukan.keterangan_id', '=', 'keterangan.id')
+    //         ->select('pemasukan.*', 'pegawai.nama', 'keterangan.namaket')
+    //         ->get();
+    // }
 }

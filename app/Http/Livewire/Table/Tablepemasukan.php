@@ -2,9 +2,12 @@
 
 namespace App\Http\Livewire\Table;
 
+use App\Models\Keterangan;
+use App\Models\Pegawai;
 use App\Models\Pemasukan;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Carbon;
 
 class Tablepemasukan extends Component
 {
@@ -29,8 +32,23 @@ class Tablepemasukan extends Component
     public $action;
     public $button;
     protected $listeners = ["deleteItem" => "delete_item"];
-    protected $rules = ['nama' => 'required', 'tempat' => 'required'];
-    protected $messages = ['nama.required' => 'Nama tidak boleh kosong', 'tempat.required' => 'Tempat tidak boleh kosong'];
+    protected $rules = [
+        'tanggal' => 'required',
+        'pegawai_id' => 'required',
+        'keterangan_id' => 'required',
+        'jumlah' => 'required|numeric',
+        'harga' => 'required',
+        'total' => 'required',
+    ];
+    protected $messages = [
+        'tanggal.required' => 'tanggal tidak boleh kosong',
+        'pegawai_id.required' => 'Pegawai tidak boleh kosong',
+        'keterangan_id.required' => 'Keterangan tidak boleh kosong',
+        'jumlah.required' => 'Jumlah tidak boleh kosong',
+        'jumlah.numeric' => 'Jumlah harus berupa angak',
+        'harga.required' => 'Harga tidak boleh kosong',
+        'total.required' => 'Total tidak boleh kosong',
+    ];
     public function showModal()
     {
         $this->isOpen = true;
@@ -59,9 +77,14 @@ class Tablepemasukan extends Component
                 $pemasukans = $this->model::search($this->search)
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage);
+                $pegawai = Pegawai::get();
+                $ket = Keterangan::get();
+                $this->total = intval($this->harga) * intval($this->jumlah);
                 return [
                     "view" => 'livewire.table.pemasukan', //resource view
                     "pemasukans" => $pemasukans, //users dikirm ke pemasukan.blade ke data tabel
+                    "pegawai" => $pegawai, //users dikirm ke pemasukan.blade ke data tabel
+                    "ket" => $ket, //users dikirm ke pemasukan.blade ke data tabel
                     "data" => array_to_object([
                         'href' => [
                             'create_new' => 'showModal()',
@@ -98,16 +121,27 @@ class Tablepemasukan extends Component
     }
     public function clearVar()
     {
-        $this->nama = '';
-        $this->tempat = '';
+        $this->tanggal = gmdate('Y-m-d');
+        $this->pegawai_id = '';
+        $this->keterangan_id = '';
+        $this->jumlah = '';
+        $this->harga = '';
+        $this->total = '';
+        $this->komentar = '';
         $this->idpemasukan = '';
     }
     public function store()
     {
 
+        $inttanggal = strtotime($this->tanggal);
         $data = [
-            'nama' => $this->nama,
-            'tempat' => $this->tempat,
+            'tanggal' => $inttanggal,
+            'pegawai_id' => $this->pegawai_id,
+            'keterangan_id' => $this->keterangan_id,
+            'jumlah' => $this->jumlah,
+            'harga' => $this->harga,
+            'total' => $this->total,
+            'komentar' => $this->komentar,
         ];
         $this->validate();
         $this->model::updateOrCreate(['id' => $this->idpemasukan], $data);
@@ -119,8 +153,13 @@ class Tablepemasukan extends Component
     {
         $cari = $this->model::findOrFail($id);
         $this->idpemasukan = $id;
-        $this->nama = $cari->nama;
-        $this->tempat = $cari->tempat;
+        $this->tanggal = date('Y-m-d', $cari->tanggal);
+        $this->pegawai_id = $cari->pegawai_id;
+        $this->keterangan_id = $cari->keterangan_id;
+        $this->jumlah = $cari->jumlah;
+        $this->harga = $cari->harga;
+        $this->total = $cari->total;
+        $this->komentar = $cari->komentar;
         $this->showModal();
     }
     public function mount()
