@@ -37,6 +37,6 @@
     </x-data-tableku>
     <x-notify-message on="saved" type="success" :message="__($button['submit_response_notyf'])" />
     @if ($isOpen)
-    @include('livewire.modal.modal-pegawai')
+    @include('livewire.modal.modal-pemasukan')
     @endif
 </div>

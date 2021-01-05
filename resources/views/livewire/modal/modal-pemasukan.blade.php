@@ -9,30 +9,46 @@
                 <div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
                     <div class="text-center">
                         <h4>
-                            Tambah
+                            Transaksi Pemasukan
                         </h4>
                     </div>
                     <div>
+                        <div class="px-1 py-2">
+                            <input wire:model="idpemasukan" type="hidden" class="w-full px-2 py-2 border rounded shadow appearance-non" id="idpemasukan" >
+                            <input wire:model="tanggal" type="date" class="w-1/3 px-2 py-2 mx-4 border rounded shadow appearance-non" id="tanggal" autocomplete="off">
+                            @error('tanggal')
+                            <h1 class="text-red-500">{{ $message }}</h1>
+                            @enderror
+                            <select wire:model="pegawai_id" class="w-1/2 px-2 py-2 border rounded shadow appearance-non">
+                                <option value="">Pilih Pegawai</option>
+                                <option >1</option>
+                                <option >2</option>
+                            </select>
+                        </div>
                         <div class="py-2">
-                            <label for="namaket">Keterangan</label>
-                            <input wire:model="idketerangan" type="hidden" class="w-full px-2 py-2 border rounded shadow appearance-non" id="namaket" >
-                            <input wire:model="namaket" type="text" class="w-full px-2 py-2 border rounded shadow appearance-non" id="namaket" autocomplete="off">
-                            @error('namaket')
+                            <select wire:model="keterangan_id" class="w-1/3 px-2 py-2 mx-4 border rounded shadow appearance-non">
+                                <option value="">Pilih Keterangan</option>
+                                <option >1</option>
+                                <option >2</option>
+                            </select>
+                            <input wire:model="harga" type="text" class="w-1/2 px-2 py-2 border rounded shadow appearance-non" id="harga" autocomplete="off" placeholder="Harga">
+                            @error('harga')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror
                         </div>
                         <div class="py-2">
-                            <label>Jenis</label>
-                            <select wire:model="jenis" class="form-control">
-                                <option value="">Pilih Jenis</option>
-                                <option >Pemasukan</option>
-                                <option >Pengeluaran</option>
-                            </select>
+                            <input wire:model="jumlah" type="text" class="w-1/3 px-2 py-2 mx-4 border rounded shadow appearance-non" id="jumlah" autocomplete="off" placeholder="Jumlah">
+                            @error('jumlah')
+                            <h1 class="text-red-500">{{ $message }}</h1>
+                            @enderror
+                            <input wire:model="total" type="text" class="w-1/2 px-2 py-2 border rounded shadow appearance-non" id="total" autocomplete="off" placeholder="Total">
+                            @error('total')
+                            <h1 class="text-red-500">{{ $message }}</h1>
+                            @enderror
                         </div>
                         <div class="py-2">
-                            <label for="harga">Harga</label>
-                            <input wire:model="harga" type="text" class="w-full px-2 py-2 border rounded shadow appearance-non" id="harga" autocomplete="off">
-                            @error('harga')
+                            <input wire:model="komentar" type="text" class="w-11/12 px-2 py-2 mx-4 border rounded shadow appearance-non" id="komentar" autocomplete="off" placeholder="Komentar">
+                            @error('komentar')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror
                         </div>

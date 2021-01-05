@@ -14,8 +14,13 @@ class Tablepemasukan extends Component
     public $name;
     public $pemasukan;
     public $idpemasukan = '';
-    public $nama = '';
-    public $tempat = '';
+    public $tanggal = '';
+    public $pegawai_id = '';
+    public $keterangan_id = '';
+    public $jumlah = '';
+    public $harga = '';
+    public $total = '';
+    public $komentar = '';
     public $isOpen = 0;
     public $perPage = 10;
     public $sortField = "id";
