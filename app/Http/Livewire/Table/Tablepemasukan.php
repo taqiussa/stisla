@@ -26,7 +26,7 @@ class Tablepemasukan extends Component
     public $komentar = '';
     public $isOpen = 0;
     public $perPage = 10;
-    public $sortField = "id";
+    public $sortField = "pemasukan.tanggal";
     public $sortAsc = false;
     public $search = '';
     public $action;
@@ -74,9 +74,24 @@ class Tablepemasukan extends Component
     {
         switch ($this->name) {
             case 'pemasukan':
+                //single query search
+                // $pemasukans = $this->model::search($this->search)
+                //     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                //     ->paginate($this->perPage);
+                //multi query search
                 $pemasukans = $this->model::search($this->search)
-                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->join('pegawai', 'pegawai.id', '=', 'pemasukan.pegawai_id')
+                    ->join('keterangan', 'keterangan.id', '=', 'pemasukan.keterangan_id')
+                    ->select(
+                        'pegawai.nama as namapegawai',
+                        'keterangan.namaket as keterangan',
+                        'pemasukan.jumlah as jumlahpemasukan',
+                        'pemasukan.id as id',
+                        'pemasukan.komentar as komentarpemasukan',
+                        'pemasukan.tanggal as tanggalpemasukan'
+                    )->orderBy($this->sortField, $this->sortAsc ? 'desc' : 'asc')
                     ->paginate($this->perPage);
+
                 $pegawai = Pegawai::get();
                 $ket = Keterangan::get();
                 $this->total = intval($this->harga) * intval($this->jumlah);

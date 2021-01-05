@@ -42,7 +42,7 @@ $links = [
                         "section_icon" => "fas fa-plus-square",
                         "section_list" => [
                             ["href" => "pemasukan", "text" => "Pemasukan"],
-                            ["href" => "user.new", "text" => "Penjualan"]
+                            ["href" => "user.new", "text" => "Pengeluaran"]
                         ]
                     ]
                 ],

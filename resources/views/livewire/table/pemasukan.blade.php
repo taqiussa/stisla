@@ -3,13 +3,21 @@
         <x-slot name="head">
             <tr>
                 <th>#</th>
-                <th><a wire:click.prevent="sortBy('tanggal')" role="button" href="#">
+                <th><a wire:click.prevent="sortBy('tanggalpemasukan')" role="button" href="#">
                     Tanggal
-                    @include('components.sort-icon', ['field' => 'tanggal'])</th>
-                <th>Nama</th>
-                <th>Keterangan</th>
-                <th>Jumlah</th>
-                <th>Komentar</th>
+                    @include('components.sort-icon', ['field' => 'tanggalpemasukan'])</th>
+                <th><a wire:click.prevent="sortBy('namapegawai')" role="button" href="#">
+                    Nama
+                    @include('components.sort-icon', ['field' => 'namapegawai'])</th>
+                <th><a wire:click.prevent="sortBy('keterangan')" role="button" href="#">
+                    Keterangan
+                    @include('components.sort-icon', ['field' => 'keterangan'])</th>
+                <th><a wire:click.prevent="sortBy('jumlahpemasukan')" role="button" href="#">
+                    Jumlah
+                    @include('components.sort-icon', ['field' => 'jumlahpemasukan'])</th>
+                <th><a wire:click.prevent="sortBy('komentarpemasukan')" role="button" href="#">
+                    Komentar
+                    @include('components.sort-icon', ['field' => 'komentarpemasukan'])</th>
                 <th>Action</th>
             </tr>
         </x-slot>
@@ -17,11 +25,11 @@
             @foreach ($pemasukans as $key => $p)
                 <tr x-data="window.__controller.dataTableController({{ $p->id }})">
                     <td>{{ $pemasukans->firstItem() + $key }}</td>
-                    <td>{{ date('D, d M y',$p->tanggal) }}</td>
-                    <td>{{ $p->pegawai->nama }}</td>
-                    <td>{{ $p->keterangan->namaket }}</td>
-                    <td>{{ $p->jumlah }}</td>
-                    <td>{{ $p->komentar }}</td>
+                    <td>{{ date('D, d M y',$p->tanggalpemasukan) }}</td>
+                    <td>{{ $p->namapegawai }}</td>
+                    <td>{{ $p->keterangan }}</td>
+                    <td>{{ $p->jumlahpemasukan }}</td>
+                    <td>{{ $p->komentarpemasukan }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" wire:click="edit({{ $p->id }})" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
                         <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="text-red-500 fa fa-16px fa-trash"></i></a>

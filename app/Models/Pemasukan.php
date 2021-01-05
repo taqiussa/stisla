@@ -12,15 +12,12 @@ class Pemasukan extends Model
     use HasFactory;
     protected $table = 'pemasukan';
     protected $fillable = ['tanggal', 'pegawai_id', 'keterangan_id', 'jumlah', 'harga', 'total', 'komentar'];
-    // public function getTanggalAttribute()
-    // {
-    //     return Carbon::parse($this->attributes['tanggal'])
-    //         ->translatedFormat('l, d M y');
-    // }
     public static function search($query)
     {
         return empty($query) ? static::query()
-            : static::where('nama', 'like', '%' . $query . '%');
+            : static::where('pegawai.nama', 'like', '%' . $query . '%')
+            ->orWhere('keterangan.namaket', 'like', '%' . $query . '%')
+            ->orWhere('pemasukan.komentar', 'like', '%' . $query . '%');
     }
     public function pegawai()
     {
