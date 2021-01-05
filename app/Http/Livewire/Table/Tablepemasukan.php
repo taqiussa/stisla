@@ -56,7 +56,7 @@ class Tablepemasukan extends Component
                     ->paginate($this->perPage);
                 return [
                     "view" => 'livewire.table.pemasukan', //resource view
-                    "pemasukans" => $pemasukans, //users dikirm ke user.blade ke data tabel
+                    "pemasukans" => $pemasukans, //users dikirm ke pemasukan.blade ke data tabel
                     "data" => array_to_object([
                         'href' => [
                             'create_new' => 'showModal()',

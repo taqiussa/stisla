@@ -36,12 +36,16 @@ $links = [
     [
         "list" => [
             [
-                "section_list" => [
-                    ["href" => "pemasukan", "text" => "Pemasukan"],
-                    ["href" => "user.new", "text" => "Pengeluaran"]
+                "href" => [
+                    [
+                        "section_text" => "Transaksi",
+                        "section_icon" => "fas fa-plus-square",
+                        "section_list" => [
+                            ["href" => "pemasukan", "text" => "Pemasukan"],
+                            ["href" => "user.new", "text" => "Penjualan"]
+                        ]
+                    ]
                 ],
-                "text" => "Transaksi",
-                "icon" => "fas fa-plus-square",
                 "is_dropdown" => true,
             ],
             [
@@ -68,7 +72,7 @@ $navigation_links = array_to_object($links);
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ route('dashboard') }}">Dashboard</a>
+            <a href="{{ route('dashboard') }}">Fiter Barber</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ route('dashboard') }}">
@@ -79,20 +83,30 @@ $navigation_links = array_to_object($links);
         <ul class="sidebar-menu">
             <li class="menu-header">{{ $link->header_text }}</li>
             @if (!$link->is_multi)
-                @foreach ($link->list as $item)
-                    @if (!$item->is_dropdown)
-                        <li class="{{ Request::routeIs($item->href) ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route($item->href) }}"><i class="{{ $item->icon }}"></i><span>{{ $item->text }}</span></a>
+                @foreach ($link->list as $lists)
+                    @if (!$lists->is_dropdown)
+                        <li class="{{ Request::routeIs($lists->href) ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route($lists->href) }}"><i class="{{ $lists->icon }}"></i><span>{{ $lists->text }}</span></a>
                         </li>
                     @else
-                        <li class="dropdown {{ ($is_active) ? 'active' : '' }}">
-                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="{{ $item->icon }}"></i> <span>{{ $item->text }}</span></a>
-                            <ul class="dropdown-menu">
-                                @foreach ($item->section_list as $child)
-                                    <li class="{{ Request::routeIs($child->href) ? 'active' : '' }}"><a class="nav-link" href="{{ route($child->href) }}">{{ $child->text }}</a></li>
-                                @endforeach
-                            </ul>
-                        </li>
+                        @foreach ($lists->href as $section)
+                            @php
+                            $routes = collect($section->section_list)->map(function ($child) {
+                                return Request::routeIs($child->href);
+                            })->toArray();
+
+                            $is_active = in_array(true, $routes);
+                            @endphp
+
+                            <li class="dropdown {{ ($is_active) ? 'active' : '' }}">
+                                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="{{ $section->section_icon }}"></i> <span>{{ $section->section_text }}</span></a>
+                                <ul class="dropdown-menu">
+                                    @foreach ($section->section_list as $child)
+                                        <li class="{{ Request::routeIs($child->href) ? 'active' : '' }}"><a class="nav-link" href="{{ route($child->href) }}">{{ $child->text }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @endforeach
                     @endif
                 @endforeach
             @else
