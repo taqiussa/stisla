@@ -18,7 +18,9 @@ class Keterangan extends Model
     public static function search($query)
     {
         return empty($query) ? static::query()
-            : static::where('nama', 'like', '%' . $query . '%')->whereOr('jenis', 'like', '%' . $query . '%');
+            : static::where('namaket', 'like', '%' . $query . '%')
+            ->orWhere('jenis', 'like', '%' . $query . '%')
+            ->orWhere('id', 'like', '%' . $query . '%');
     }
     public function pemasukan()
     {

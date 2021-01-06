@@ -9,6 +9,8 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Carbon;
 
+use function PHPUnit\Framework\isEmpty;
+
 class Tablepemasukan extends Component
 {
     use WithPagination;
@@ -74,11 +76,6 @@ class Tablepemasukan extends Component
     {
         switch ($this->name) {
             case 'pemasukan':
-                //single query search
-                // $pemasukans = $this->model::search($this->search)
-                //     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                //     ->paginate($this->perPage);
-                //multi query search
                 $pemasukans = $this->model::search($this->search)
                     ->join('pegawai', 'pegawai.id', '=', 'pemasukan.pegawai_id')
                     ->join('keterangan', 'keterangan.id', '=', 'pemasukan.keterangan_id')
@@ -93,13 +90,17 @@ class Tablepemasukan extends Component
                     ->paginate($this->perPage);
 
                 $pegawai = Pegawai::get();
-                $ket = Keterangan::get();
+                $ket = Keterangan::where('jenis', 'pemasukan')->get();
+                if (!empty($this->keterangan_id)) {
+                    $cariharga = Keterangan::find($this->keterangan_id);
+                    $this->harga = $cariharga->harga;
+                }
                 $this->total = intval($this->harga) * intval($this->jumlah);
                 return [
                     "view" => 'livewire.table.pemasukan', //resource view
                     "pemasukans" => $pemasukans, //users dikirm ke pemasukan.blade ke data tabel
-                    "pegawai" => $pegawai, //users dikirm ke pemasukan.blade ke data tabel
-                    "ket" => $ket, //users dikirm ke pemasukan.blade ke data tabel
+                    "pegawai" => $pegawai, //pegawai dikirm ke modal-pemasukan.blade untuk select pegawai
+                    "ket" => $ket, //ket dikirm ke modal-pemasukan.blade untuk select keterangan
                     "data" => array_to_object([
                         'href' => [
                             'create_new' => 'showModal()',
@@ -181,9 +182,11 @@ class Tablepemasukan extends Component
     {
         $this->button = create_button($this->action, "pemasukan");
         // this button untuk menampilkan emit atau message toast 
+
     }
     public function render()
     {
+
         $data = $this->get_pagination_data();
         return view($data['view'], $data);
     }

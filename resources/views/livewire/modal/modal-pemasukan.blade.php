@@ -30,7 +30,8 @@
                             <select wire:model="keterangan_id" class="w-1/3 px-2 py-2 mx-4 border rounded shadow appearance-non">
                                 <option value="">Pilih Keterangan</option>
                                 @foreach ($ket as $k)
-                                <option value="{{ $k->id }}">{{ $k->namaket }}</option>
+                                <option value="{{ $k->id }}" >{{ $k->namaket }}</option>
+                                {{-- <option value="{{ $k->id }}">{{ $k->namaket }}</option> --}}
                                 @endforeach
                             
                             </select>
