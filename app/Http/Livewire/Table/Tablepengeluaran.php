@@ -24,11 +24,12 @@ class Tablepengeluaran extends Component
     public $action;
     public $button;
     protected $listeners = ["deleteItem" => "delete_item"];
-    protected $rules = ['keterangan' => 'required', 'total' => 'required', 'tanggal' => 'required'];
+    protected $rules = ['keterangan' => 'required', 'total' => 'required|numeric', 'tanggal' => 'required'];
     protected $messages = [
         'tanggal.required' => 'Tanggal tidak boleh kosong',
         'keterangan.required' => 'Keterangan tidak boleh kosong',
-        'total.required' => 'total tidak boleh kosong'
+        'total.required' => 'total tidak boleh kosong',
+        'total.numeric' => 'total harus berupa angka'
     ];
     public function showModal()
     {

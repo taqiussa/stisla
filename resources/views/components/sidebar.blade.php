@@ -1,56 +1,67 @@
 @php
-$links = [
-    // [
-    //     "href" => "dashboard",
-    //     "header_text" => "Dashboard",
-    //     "text" => "Dashboard",
-    //     "icon" => "fas fa-fire",
-    //     "is_multi" => false,
-    // ],
+$links = 
+[
     [
-        "list" =>[
+        "header_text" => "Dashboard",
+        "is_multi" => false,
+        "list" =>
+        [
             [
                 "text" => "Dashboar",
-                "icon" => "fas fa-fire",
+                "icon" => "fab fa-gripfire",
                 "href" => "dashboard",
                 "is_dropdown" => false,
             ],
         ],  
-        "header_text" => "Dashboard",
-        "is_multi" => false,
     ],
     [
-        "href" => [
+        "header_text" => "Admin User",
+        "is_multi" => true,
+        "href" => 
+        [
             [
                 "section_text" => "User",
-                "section_icon" => "fas fa-user",
-                "section_list" => [
+                "section_icon" => "far fa-user",
+                "section_list" => 
+                [
                     ["href" => "user", "text" => "Data User"],
                     ["href" => "user.new", "text" => "Buat User"]
                 ]
             ]
         ],
-        "header_text" => "Admin User",
-        "is_multi" => true,
     ],
     [
-        "list" => [
+        "header_text" => "Fiter Barber",
+        "is_multi" => false,
+        "list" => 
+        [
             [
-                "href" => [
+                "is_dropdown" => true,
+                "href" => 
+                [
                     [
                         "section_text" => "Transaksi",
-                        "section_icon" => "fas fa-plus-square",
-                        "section_list" => [
+                        "section_icon" => "far fa-plus-square",
+                        "section_list" => 
+                        [
                             ["href" => "pemasukan", "text" => "Pemasukan"],
-                            ["href" => "user.new", "text" => "Pengeluaran"]
+                            ["href" => "pengeluaran", "text" => "Pengeluaran"]
+                        ]
+                    ],
+                    [
+                        "section_text" => "Laporan",
+                        "section_icon" => "far fa-bookmark",
+                        "section_list" => 
+                        [
+                            ["href" => "pemasukan", "text" => "Pemasukan"],
+                            ["href" => "pengeluaran", "text" => "Pengeluaran"]
                         ]
                     ]
                 ],
-                "is_dropdown" => true,
             ],
             [
                 "text" => "Pegawai",
-                "icon" => "fas fa-users",
+                "icon" => "far fa-address-book",
                 "href" => "pegawai",
                 "is_dropdown" => false,
             ],
@@ -61,9 +72,6 @@ $links = [
                 "is_dropdown" => false,
             ]
         ],
-        "header_text" => "Fiter Barber",
-        "is_multi" => false,
-        
     ],
 ];
 $navigation_links = array_to_object($links);

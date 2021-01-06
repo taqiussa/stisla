@@ -1,17 +1,19 @@
 <div>
-    <x-data-tableku :data="$data" :model="$pegawais">
+    <x-data-tableku :data="$data" :model="$pengeluarans">
         <x-slot name="head">
             <tr>
-                <th><a wire:click.prevent="sortBy('nama')" role="button" href="#">
-                    #
+                <th>#</th>
+                <th><a wire:click.prevent="sortBy('tanggal')" role="button" href="#">
+                    Tanggal
+                    @include('components.sort-icon', ['field' => 'tanggal'])
                 </a></th>
-                <th><a wire:click.prevent="sortBy('nama')" role="button" href="#">
-                    Name
-                    @include('components.sort-icon', ['field' => 'nama'])
+                <th><a wire:click.prevent="sortBy('keterangan')" role="button" href="#">
+                    Keterangan
+                    @include('components.sort-icon', ['field' => 'keterangan'])
                 </a></th>
-                <th><a wire:click.prevent="sortBy('tempat')" role="button" href="#">
-                    Tempat
-                    @include('components.sort-icon', ['field' => 'tempat'])
+                <th><a wire:click.prevent="sortBy('total')" role="button" href="#">
+                    Total
+                    @include('components.sort-icon', ['field' => 'total'])
                 </a></th>
                 <th><a wire:click.prevent="sortBy('created_at')" role="button" href="#">
                     Tanggal Dibuat
@@ -21,11 +23,12 @@
             </tr>
         </x-slot>
         <x-slot name="body">
-            @foreach ($pegawais as $key => $p)
+            @foreach ($pengeluarans as $key => $p)
                 <tr x-data="window.__controller.dataTableController({{ $p->id }})">
-                    <td>{{ $pegawais->firstItem() + $key }}</td>
-                    <td>{{ $p->nama }}</td>
-                    <td>{{ $p->tempat }}</td>
+                    <td>{{ $pengeluarans->firstItem() + $key }}</td>
+                    <td>{{ date('D, d M y',$p->tanggal) }}</td>
+                    <td>{{ $p->keterangan }}</td>
+                    <td>{{ number_format($p->total, 0, ".", ".") . ",-" }}</td>
                     <td>{{ $p->created_at }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" wire:click="edit({{ $p->id }})" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
@@ -37,6 +40,6 @@
     </x-data-tableku>
     <x-notify-message on="saved" type="success" :message="__($button['submit_response_notyf'])" />
     @if ($isOpen)
-    @include('livewire.modal.modal-pegawai')
+    @include('livewire.modal.modal-pengeluaran')
     @endif
 </div>

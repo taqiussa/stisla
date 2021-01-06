@@ -20,19 +20,19 @@
                     <div>
                         <div class="px-1 py-2">
                             <input wire:model="idpengeluaran" type="hidden" class="w-full px-2 py-2 border rounded shadow appearance-non" id="idpengeluaran" >
-                            <input wire:model="tanggal" type="date" class="w-1/3 px-2 py-2 ml-4 border rounded shadow appearance-non" id="tanggal" autocomplete="off">
+                            <input wire:model="tanggal" type="date" class="w-full px-2 py-2 border rounded shadow appearance-non" id="tanggal" autocomplete="off">
                             @error('tanggal')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror
                         </div>
                         <div class="py-2">
-                            <input wire:model="keterangan" type="text" class="w-1/2 px-2 py-2 border rounded shadow appearance-non" id="keterangan" autocomplete="off" placeholder="keterangan">
+                            <input wire:model="keterangan" type="text" class="w-full px-2 py-2 border rounded shadow appearance-non" id="keterangan" autocomplete="off" placeholder="Keterangan">
                             @error('keterangan')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror
                         </div>
                         <div class="py-2">
-                            <input wire:model="total" type="text" class="w-1/2 px-2 py-2 border rounded shadow appearance-non" id="total" placeholder="Total">
+                            <input wire:model="total" type="text" class="w-full px-2 py-2 border rounded shadow appearance-non" id="total" placeholder="Total">
                             @error('total')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror
