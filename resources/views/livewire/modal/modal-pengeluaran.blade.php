@@ -32,7 +32,7 @@
                             @enderror
                         </div>
                         <div class="py-2">
-                            <input wire:model="total" type="text" class="w-1/2 px-2 py-2 border rounded shadow appearance-non" id="total" readonly placeholder="Total">
+                            <input wire:model="total" type="text" class="w-1/2 px-2 py-2 border rounded shadow appearance-non" id="total" placeholder="Total">
                             @error('total')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror
