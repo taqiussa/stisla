@@ -5,9 +5,14 @@
         </div>  
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
         <div class="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+            <div class="text-lg text-right">
+                <a role="button" wire:click="hideModal()" class="mr-1">
+                    <i class="fa fa-window-close"></i>
+                </a>
+            </div>
             <form>
-                <div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
-                    <div class="text-center">
+                <div class="px-3 pt-1 pb-3 bg-white sm:p-6 sm:pb-4">
+                    <div class="mb-3 text-lg text-center">
                         <h4>
                             Transaksi Pemasukan
                         </h4>
@@ -15,7 +20,7 @@
                     <div>
                         <div class="px-1 py-2">
                             <input wire:model="idpemasukan" type="hidden" class="w-full px-2 py-2 border rounded shadow appearance-non" id="idpemasukan" >
-                            <input wire:model="tanggal" type="date" class="w-1/3 px-2 py-2 mx-4 border rounded shadow appearance-non" id="tanggal" autocomplete="off">
+                            <input wire:model="tanggal" type="date" class="w-1/3 px-2 py-2 ml-4 border rounded shadow appearance-non" id="tanggal" autocomplete="off">
                             @error('tanggal')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror
@@ -27,13 +32,11 @@
                             </select>
                         </div>
                         <div class="py-2">
-                            <select wire:model="keterangan_id" class="w-1/3 px-2 py-2 mx-4 border rounded shadow appearance-non">
+                            <select wire:model="keterangan_id" class="w-1/3 px-2 py-2 ml-4 border rounded shadow appearance-non">
                                 <option value="">Pilih Keterangan</option>
                                 @foreach ($ket as $k)
                                 <option value="{{ $k->id }}" >{{ $k->namaket }}</option>
-                                {{-- <option value="{{ $k->id }}">{{ $k->namaket }}</option> --}}
                                 @endforeach
-                            
                             </select>
                             <input wire:model="harga" type="text" class="w-1/2 px-2 py-2 border rounded shadow appearance-non" id="harga" autocomplete="off" placeholder="Harga">
                             @error('harga')
@@ -41,7 +44,7 @@
                             @enderror
                         </div>
                         <div class="py-2">
-                            <input wire:model="jumlah" type="text" class="w-1/3 px-2 py-2 mx-4 border rounded shadow appearance-non" id="jumlah" autocomplete="off" placeholder="Jumlah">
+                            <input wire:model="jumlah" type="text" class="w-1/3 px-2 py-2 ml-4 border rounded shadow appearance-non" id="jumlah" autocomplete="off" placeholder="Jumlah">
                             @error('jumlah')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror
@@ -51,7 +54,7 @@
                             @enderror
                         </div>
                         <div class="py-2">
-                            <input wire:model="komentar" type="text" class="w-11/12 px-2 py-2 mx-4 border rounded shadow appearance-non" id="komentar" autocomplete="off" placeholder="Komentar">
+                            <input wire:model="komentar" type="text" class="w-10/12 px-2 py-2 ml-4 border rounded shadow appearance-non" id="komentar" autocomplete="off" placeholder="Komentar">
                             @error('komentar')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror

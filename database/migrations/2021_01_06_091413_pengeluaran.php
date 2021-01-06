@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Pemasukan extends Migration
+class Pengeluaran extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class Pemasukan extends Migration
      */
     public function up()
     {
-        Schema::create('pemasukan', function (Blueprint $table) {
+        Schema::create('pengeluaran', function (Blueprint $table) {
             $table->id();
             $table->integer('tanggal');
-            $table->foreignId('pegawai_id');
-            $table->foreignId('keterangan_id');
-            $table->integer('jumlah');
-            $table->integer('harga');
+            $table->text('keterangan');
             $table->integer('total');
-            $table->text('komentar')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ class Pemasukan extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pemasukan');
+        Schema::dropIfExists('pengeluaran');
     }
 }

@@ -5,26 +5,35 @@
         </div>  
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
         <div class="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+            <div class="text-lg text-right">
+                <a role="button" wire:click="hideModal()" class="mr-1">
+                    <i class="fa fa-window-close"></i>
+                </a>
+            </div>
             <form>
-                <div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
-                    <div class="text-center">
+                <div class="px-3 pt-1 pb-3 bg-white sm:p-6 sm:pb-4">
+                    <div class="mb-3 text-lg text-center">
                         <h4>
-                            Tambah Pegawai
+                            Transaksi Pengeluaran
                         </h4>
                     </div>
                     <div>
-                        <div>
-                            <label for="nama">Nama</label>
-                            <input wire:model="idpegawai" type="hidden" class="w-full px-2 py-2 border rounded shadow appearance-non" id="nama" >
-                            <input wire:model="nama" type="text" class="w-full px-2 py-2 border rounded shadow appearance-non" id="nama" autocomplete="off">
-                            @error('nama')
+                        <div class="px-1 py-2">
+                            <input wire:model="idpengeluaran" type="hidden" class="w-full px-2 py-2 border rounded shadow appearance-non" id="idpengeluaran" >
+                            <input wire:model="tanggal" type="date" class="w-1/3 px-2 py-2 ml-4 border rounded shadow appearance-non" id="tanggal" autocomplete="off">
+                            @error('tanggal')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror
                         </div>
-                        <div>
-                            <label for="tempat">Tempat</label>
-                            <input wire:model="tempat" type="text" class="w-full px-2 py-2 border rounded shadow appearance-non" id="tempat" autocomplete="off">
-                            @error('tempat')
+                        <div class="py-2">
+                            <input wire:model="keterangan" type="text" class="w-1/2 px-2 py-2 border rounded shadow appearance-non" id="keterangan" autocomplete="off" placeholder="keterangan">
+                            @error('keterangan')
+                            <h1 class="text-red-500">{{ $message }}</h1>
+                            @enderror
+                        </div>
+                        <div class="py-2">
+                            <input wire:model="total" type="text" class="w-1/2 px-2 py-2 border rounded shadow appearance-non" id="total" readonly placeholder="Total">
+                            @error('total')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror
                         </div>
