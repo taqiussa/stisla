@@ -12,6 +12,11 @@ class Pemasukan extends Model
     use HasFactory;
     protected $table = 'pemasukan';
     protected $fillable = ['tanggal', 'pegawai_id', 'keterangan_id', 'jumlah', 'harga', 'total', 'komentar'];
+
+    public function getTanggalPemasukanAttribute()
+    {
+        return Carbon::parse($this->attributes['tanggalpemasukan'])->translatedFormat('l, d M y');
+    }
     public static function search($query)
     {
         return empty($query) ? static::query()

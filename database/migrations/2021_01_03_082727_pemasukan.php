@@ -15,7 +15,7 @@ class Pemasukan extends Migration
     {
         Schema::create('pemasukan', function (Blueprint $table) {
             $table->id();
-            $table->integer('tanggal');
+            $table->date('tanggal');
             $table->foreignId('pegawai_id');
             $table->foreignId('keterangan_id');
             $table->integer('jumlah');

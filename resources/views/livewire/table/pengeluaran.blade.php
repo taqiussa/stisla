@@ -26,7 +26,7 @@
             @foreach ($pengeluarans as $key => $p)
                 <tr x-data="window.__controller.dataTableController({{ $p->id }})">
                     <td>{{ $pengeluarans->firstItem() + $key }}</td>
-                    <td>{{ date('D, d M y',$p->tanggal) }}</td>
+                    <td>{{ $p->tgl }}</td>
                     <td>{{ $p->keterangan }}</td>
                     <td>{{ number_format($p->total, 0, ".", ".") . ",-" }}</td>
                     <td>{{ $p->created_at }}</td>

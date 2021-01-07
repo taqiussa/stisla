@@ -56,7 +56,7 @@ class Tablepengeluaran extends Component
     {
         switch ($this->name) {
             case 'pengeluaran':
-                $pengeluarans = $this->model::search($this->search)
+                $pengeluarans = $this->model::search($this->search)->select('*', 'tanggal as tgl')
                     ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage);
                 return [
@@ -105,9 +105,8 @@ class Tablepengeluaran extends Component
     }
     public function store()
     {
-        $inttanggal = strtotime($this->tanggal);
         $data = [
-            'tanggal' => $inttanggal,
+            'tanggal' => $this->tanggal,
             'keterangan' => $this->keterangan,
             'total' => $this->total,
         ];
@@ -121,7 +120,7 @@ class Tablepengeluaran extends Component
     {
         $cari = $this->model::findOrFail($id);
         $this->idpengeluaran = $id;
-        $this->tanggal = date('Y-m-d', $cari->tanggal);
+        $this->tanggal = date('Y-m-d', strtotime($cari->tanggal));
         $this->keterangan = $cari->keterangan;
         $this->total = $cari->total;
         $this->showModal();

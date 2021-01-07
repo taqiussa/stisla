@@ -53,7 +53,7 @@ $links =
                         "section_icon" => "far fa-bookmark",
                         "section_list" => 
                         [
-                            ["href" => "pemasukan", "text" => "Pemasukan"],
+                            ["href" => "laporanpemasukan", "text" => "Pemasukan"],
                             ["href" => "pengeluaran", "text" => "Pengeluaran"]
                         ]
                     ]

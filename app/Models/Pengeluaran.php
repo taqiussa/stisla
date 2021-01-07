@@ -11,6 +11,10 @@ class Pengeluaran extends Model
     use HasFactory;
     protected $table = 'pengeluaran';
     protected $fillable = ['tanggal', 'keterangan', 'total'];
+    public function getTglAttribute()
+    {
+        return Carbon::parse($this->attributes['tgl'])->translatedFormat('l, d M y');
+    }
     public function getCreatedAtAttribute()
     {
         return Carbon::parse($this->attributes['created_at'])

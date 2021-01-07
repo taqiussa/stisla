@@ -25,7 +25,7 @@
             @foreach ($pemasukans as $key => $p)
                 <tr x-data="window.__controller.dataTableController({{ $p->id }})">
                     <td>{{ $pemasukans->firstItem() + $key }}</td>
-                    <td>{{ date('D, d M y',$p->tanggalpemasukan) }}</td>
+                    <td>{{ $p->tanggalpemasukan }}</td>
                     <td>{{ $p->namapegawai }}</td>
                     <td>{{ $p->keterangan }}</td>
                     <td>{{ $p->jumlahpemasukan }}</td>

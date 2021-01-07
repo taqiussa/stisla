@@ -149,9 +149,8 @@ class Tablepemasukan extends Component
     public function store()
     {
 
-        $inttanggal = strtotime($this->tanggal);
         $data = [
-            'tanggal' => $inttanggal,
+            'tanggal' => $this->tanggal,
             'pegawai_id' => $this->pegawai_id,
             'keterangan_id' => $this->keterangan_id,
             'jumlah' => $this->jumlah,
@@ -169,7 +168,7 @@ class Tablepemasukan extends Component
     {
         $cari = $this->model::findOrFail($id);
         $this->idpemasukan = $id;
-        $this->tanggal = date('Y-m-d', $cari->tanggal);
+        $this->tanggal = date('Y-m-d', strtotime($cari->tanggal));
         $this->pegawai_id = $cari->pegawai_id;
         $this->keterangan_id = $cari->keterangan_id;
         $this->jumlah = $cari->jumlah;
