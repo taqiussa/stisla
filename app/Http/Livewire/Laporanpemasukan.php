@@ -30,9 +30,9 @@ class Laporanpemasukan extends Component
         if (!empty($this->keterangan_id)) {
 
             $cari = Keterangan::find($this->keterangan_id);
-            $cari2 = Pemasukan::whereMonth('tanggal', $this->bulan)->whereYear('tanggal', $this->tahun)->where('pegawai_id', $this->pegawai_id)->where('keterangan_id', $this->keterangan_id)->sum('jumlah');
+            $jml = Pemasukan::whereMonth('tanggal', $this->bulan)->whereYear('tanggal', $this->tahun)->where('pegawai_id', $this->pegawai_id)->where('keterangan_id', $this->keterangan_id)->sum('jumlah');
             $this->nama = $cari->namaket;
-            $this->jumlah = $cari2;
+            $this->jumlah = $jml;
         }
         return view('livewire.laporan.laporanpemasukan', $data);
     }
