@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\BonController;
 use App\Http\Controllers\KeteranganController;
 use App\Http\Controllers\LaporanpemasukanController;
+use App\Http\Controllers\LiburController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\PengeluaranController;
@@ -30,6 +32,8 @@ Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
     Route::get('/keterangan', [KeteranganController::class, 'index'])->name('keterangan');
     Route::get('/pemasukan', [PemasukanController::class, 'index'])->name('pemasukan');
     Route::get('/pengeluaran', [PengeluaranController::class, 'index'])->name('pengeluaran');
+    Route::get('/libur', [LiburController::class, 'index'])->name('libur');
+    Route::get('/bon', [BonController::class, 'index'])->name('bon');
     Route::get('/laporanpemasukan', [LaporanpemasukanController::class, 'index'])->name('laporanpemasukan');
     Route::view('/user/new', 'pages.user.user-new')->name('user.new');
     Route::view('/user/edit/{userId}', 'pages.user.user-edit')->name('user.edit');

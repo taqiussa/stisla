@@ -25,4 +25,12 @@ class Pegawai extends Model
     {
         return $this->hasMany(Pemasukan::class);
     }
+    public function libur()
+    {
+        return $this->hasMany(Libur::class);
+    }
+    public function bon()
+    {
+        return $this->hasMany(Libur::class);
+    }
 }

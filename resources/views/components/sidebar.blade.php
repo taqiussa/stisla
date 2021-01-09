@@ -45,7 +45,9 @@ $links =
                         "section_list" => 
                         [
                             ["href" => "pemasukan", "text" => "Pemasukan"],
-                            ["href" => "pengeluaran", "text" => "Pengeluaran"]
+                            ["href" => "pengeluaran", "text" => "Pengeluaran"],
+                            ["href" => "libur", "text" => "Libur"],
+                            ["href" => "bon", "text" => "Bon"],
                         ]
                     ],
                     [
