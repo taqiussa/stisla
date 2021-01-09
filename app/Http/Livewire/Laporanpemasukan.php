@@ -11,8 +11,6 @@ use Livewire\Component;
 
 class Laporanpemasukan extends Component
 {
-    public $tanggal1;
-    public $tanggal2;
     public $bulan;
     public $tahun;
     public $pegawai_id;
@@ -42,7 +40,7 @@ class Laporanpemasukan extends Component
             $lbr = Libur::whereMonth('tanggal', $this->bulan)->whereYear('tanggal', $this->tahun)->where('pegawai_id', $this->pegawai_id)->sum('jumlah');
             $peg = Pegawai::find($this->pegawai_id);
             $this->nama = $peg->nama;
-            $this->bln = date('F', strtotime($this->tahun . '-' . $this->bulan . '-01'));
+            $this->bln = date('M', strtotime($this->tahun . '-' . $this->bulan . '-01'));
             $this->keterangan = $cari->namaket;
             $this->jumlah = $jml;
             $this->total = $tot;

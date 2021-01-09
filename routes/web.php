@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BonController;
 use App\Http\Controllers\KeteranganController;
+use App\Http\Controllers\LaporankeuanganController;
 use App\Http\Controllers\LaporanpemasukanController;
 use App\Http\Controllers\LiburController;
 use App\Http\Controllers\PegawaiController;
@@ -35,6 +36,7 @@ Route::group(["middleware" => ['auth:sanctum', 'verified']], function () {
     Route::get('/libur', [LiburController::class, 'index'])->name('libur');
     Route::get('/bon', [BonController::class, 'index'])->name('bon');
     Route::get('/laporanpemasukan', [LaporanpemasukanController::class, 'index'])->name('laporanpemasukan');
+    Route::get('/laporankeuangan', [LaporankeuanganController::class, 'index'])->name('laporankeuangan');
     Route::view('/user/new', 'pages.user.user-new')->name('user.new');
     Route::view('/user/edit/{userId}', 'pages.user.user-edit')->name('user.edit');
 });
