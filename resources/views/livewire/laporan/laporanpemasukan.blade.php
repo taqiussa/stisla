@@ -59,11 +59,29 @@
         <div class="w-full py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="flex flex-col w-full mb-2 space-y-2 lg:flex-row lg:space-x-2 lg:space-y-0 lg:mb-4">
                 <div class="w-full lg:w-1/4">
-                    <div class="w-full p-4 bg-white border border-gray-100 rounded-lg shadow widget dark:bg-gray-900 dark:border-gray-800">
+                    <div class="w-full p-4 bg-white border border-gray-100 rounded-lg shadow-info widget dark:bg-gray-900 dark:border-gray-800">
                         <div class="flex flex-row items-center justify-between">
                             <div class="flex flex-col">
                                 <div class="text-xs font-light text-gray-500 uppercase">
-                                    {{ $nama }}
+                                    Rekap {{ $bln .' '. $tahun   }}
+                                 </div>
+                                 <div class="text-xl font-bold">
+                                     {{ $nama }}
+                                 </div>
+                            </div>
+                            <svg class="text-gray-500 stroke-current" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12">
+                                </polyline>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/4">
+                    <div class="w-full p-4 bg-white border border-gray-100 rounded-lg shadow-info widget dark:bg-gray-900 dark:border-gray-800">
+                        <div class="flex flex-row items-center justify-between">
+                            <div class="flex flex-col">
+                                <div class="text-xs font-light text-gray-500 uppercase">
+                                   Jumlah {{ $keterangan   }}
                                 </div>
                                 <div class="text-xl font-bold">
                                     {{ $jumlah }}
@@ -83,32 +101,14 @@
                     </div>
                 </div>
                 <div class="w-full lg:w-1/4">
-                    <div class="w-full p-4 bg-white border border-gray-100 rounded-lg shadow widget dark:bg-gray-900 dark:border-gray-800">
+                    <div class="w-full p-4 bg-white border border-gray-100 rounded-lg shadow-info widget dark:bg-gray-900 dark:border-gray-800">
                         <div class="flex flex-row items-center justify-between">
                             <div class="flex flex-col">
                                 <div class="text-xs font-light text-gray-500 uppercase">
-                                    PREVIEWS
+                                    Total Pemasukan
                                 </div>
                                 <div class="text-xl font-bold">
-                                    45
-                                </div>
-                            </div>
-                            <svg class="text-gray-500 stroke-current" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12">
-                                </polyline>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full lg:w-1/4">
-                    <div class="w-full p-4 bg-white border border-gray-100 rounded-lg shadow-warning widget dark:bg-gray-900 dark:border-gray-800">
-                        <div class="flex flex-row items-center justify-between">
-                            <div class="flex flex-col">
-                                <div class="text-xs font-light text-gray-500 uppercase">
-                                    Links
-                                </div>
-                                <div class="text-xl font-bold">
-                                    4078
+                                    Rp. {{ number_format($total, 0, ".", ".") . ",-" }}
                                 </div>
                             </div>
                             <svg class="text-gray-500 stroke-current" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -129,10 +129,7 @@
                                 </div>
                             </div>
                             <svg class="text-gray-500 stroke-current" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10">
-                                </circle>
-                                <polyline points="12 6 12 12 16 14">
-                                </polyline>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                             </svg>
                         </div>
                     </div>

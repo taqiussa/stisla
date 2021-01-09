@@ -18,6 +18,8 @@ class Laporanpemasukan extends Component
     public $nama;
     public $keterangan;
     public $jumlah;
+    public $total;
+    public $bln;
 
     public function render()
     {
@@ -31,8 +33,13 @@ class Laporanpemasukan extends Component
 
             $cari = Keterangan::find($this->keterangan_id);
             $jml = Pemasukan::whereMonth('tanggal', $this->bulan)->whereYear('tanggal', $this->tahun)->where('pegawai_id', $this->pegawai_id)->where('keterangan_id', $this->keterangan_id)->sum('jumlah');
-            $this->nama = $cari->namaket;
+            $tot = Pemasukan::whereMonth('tanggal', $this->bulan)->whereYear('tanggal', $this->tahun)->where('pegawai_id', $this->pegawai_id)->where('keterangan_id', $this->keterangan_id)->sum('total');
+            $peg = Pegawai::find($this->pegawai_id);
+            $this->nama = $peg->nama;
+            $this->bln = date('F', strtotime($this->tahun . '-' . $this->bulan . '-01'));
+            $this->keterangan = $cari->namaket;
             $this->jumlah = $jml;
+            $this->total = $tot;
         }
         return view('livewire.laporan.laporanpemasukan', $data);
     }

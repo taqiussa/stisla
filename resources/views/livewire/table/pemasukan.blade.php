@@ -28,7 +28,7 @@
                     <td>{{ $p->tanggalpemasukan }}</td>
                     <td>{{ $p->namapegawai }}</td>
                     <td>{{ $p->keterangan }}</td>
-                    <td>{{ $p->jumlahpemasukan }}</td>
+                    <td>Rp. {{ number_format($p->jumlahpemasukan, 0, ".", ".") . ",-" }}</td>
                     <td>{{ $p->komentarpemasukan }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
                         <a role="button" wire:click="edit({{ $p->id }})" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
