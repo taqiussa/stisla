@@ -83,6 +83,7 @@ class Tablepemasukan extends Component
                         'pegawai.nama as namapegawai',
                         'keterangan.namaket as keterangan',
                         'pemasukan.jumlah as jumlahpemasukan',
+                        'pemasukan.total as totalpemasukan',
                         'pemasukan.id as id',
                         'pemasukan.komentar as komentarpemasukan',
                         'pemasukan.tanggal as tanggalpemasukan'
