@@ -54,6 +54,16 @@
             </select>
         </div>
     </div>
+    
+    <div class="mb-2 -mx-3 md:flex">
+        <div class="px-3 mb-6 md:w-1/2 md:mb-0">
+            <label class="block mb-2 text-xs font-bold tracking-wide uppercase text-grey-darker" for="grid-state">
+                GAJI
+            </label>
+            <input wire:model="gaji" type="text" class="w-1/3 px-2 py-2 border rounded shadow appearance-non" id="gaji" autocomplete="off" placeholder="Gaji"> 
+        </div>
+    </div>
+
     <!-- component -->
     <div class="flex items-center">
         <div class="w-full py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -135,6 +145,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="mb-2 -mx-3 md:flex">
+        <div class="px-3 mb-6 md:w-1/2 md:mb-0">
+            <a role="button" wire:click="print()" class="shadow-none -ml- btn btn-info"><i class="fa fa-16px fa-file-import"> Print</i></a>
         </div>
     </div>
 </div>
