@@ -84,8 +84,8 @@ class Laporanpemasukan extends Component
 
         $img = EscposImage::load('./images/logoputih.png');
         $printer->setJustification(Printer::JUSTIFY_CENTER);
-        $printer->bitImage($img);
-        $printer->feed();
+        $printer->bitImageColumnFormat($img);
+        // $printer->feed();
         /* Name of shop */
         $printer->selectPrintMode(Printer::MODE_EMPHASIZED);
         $printer->setJustification(Printer::JUSTIFY_CENTER);
