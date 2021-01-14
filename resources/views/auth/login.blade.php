@@ -1,13 +1,7 @@
 <x-guest-layout>
-    <div class="flex justify-center w-8/12 shadow-2xl">
-        <img class="items-stretch hidden w-8/12 md:block" src="{{ asset('images/logo fiter barber.png') }}">
-    </div>
-    <div class="flex flex-col w-full md:w-1/3">
-        <x-jet-authentication-card>
+           <x-jet-authentication-card>
             <x-slot name="logo">
-                <div class="flex justify-center">
                     <img class="hidden object-cover w-full md:block" src="{{ asset('images/logobarber.png') }}">
-                </div>
                 {{-- <x-jet-authentication-card-logo /> --}}
             </x-slot>
 
@@ -52,7 +46,5 @@
                 </div>
             </form>
         </x-jet-authentication-card>
-    </div>
     
-
 </x-guest-layout>

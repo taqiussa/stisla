@@ -148,7 +148,7 @@
         </div>
     </div>
     <div class="mb-2 -mx-3 md:flex">
-        <div class="px-3 mb-6 md:w-1/2 md:mb-0">
+        <div class="px-3 mb-6 text-right md:w-1/2 md:mb-0 col">
             <a role="button" wire:click="print()" class="shadow-none -ml- btn btn-info"><i class="fa fa-16px fa-file-import"> Print</i></a>
         </div>
     </div>

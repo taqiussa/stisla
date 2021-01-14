@@ -18,7 +18,7 @@
         <script defer src="{{ asset('vendor/alpine.js') }}"></script>
     </head>
     <body>
-        <div class="flex flex-wrap w-full px-2 mx-2 font-sans antialiased text-gray-900">
+        <div class="font-sans antialiased text-gray-900">
             {{ $slot }}
         </div>
     </body>
