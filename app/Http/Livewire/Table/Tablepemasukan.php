@@ -19,7 +19,7 @@ class Tablepemasukan extends Component
     public $name;
     public $pemasukan;
     public $idpemasukan = '';
-    public $tanggal = '';
+    public $tanggal;
     public $pegawai_id = '';
     public $keterangan_id = '';
     public $jumlah = '';
@@ -34,6 +34,9 @@ class Tablepemasukan extends Component
     public $action;
     public $button;
     protected $listeners = ["deleteItem" => "delete_item"];
+    protected $casts = [
+        'tanggal' => 'date:Y-m-d'
+    ];
     protected $rules = [
         'tanggal' => 'required',
         'pegawai_id' => 'required',
@@ -180,6 +183,7 @@ class Tablepemasukan extends Component
     }
     public function mount()
     {
+        $this->tanggal = gmdate('Y-m-d');
         $this->button = create_button($this->action, "pemasukan");
         // this button untuk menampilkan emit atau message toast 
 
