@@ -72,7 +72,7 @@ class Tablelibur extends Component
                         'libur.id as id',
                         'libur.keterangan as keterangan',
                         'libur.tanggal as tanggallibur'
-                    )->orderBy($this->sortField, $this->sortAsc ? 'desc' : 'asc')
+                    )->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                     ->paginate($this->perPage);
 
                 $pegawai = Pegawai::get();
@@ -149,6 +149,7 @@ class Tablelibur extends Component
     }
     public function mount()
     {
+        $this->tanggal = gmdate('Y-m-d');
         $this->button = create_button($this->action, "libur");
         // this button untuk menampilkan emit atau message toast 
 

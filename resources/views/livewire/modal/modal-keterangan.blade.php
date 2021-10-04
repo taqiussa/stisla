@@ -16,14 +16,14 @@
                         <div class="py-2">
                             <label for="namaket">Keterangan</label>
                             <input wire:model="idketerangan" type="hidden" class="w-full px-2 py-2 border rounded shadow appearance-non" id="namaket" >
-                            <input wire:model="namaket" type="text" class="w-full px-2 py-2 border rounded shadow appearance-non" id="namaket" autocomplete="off">
+                            <input wire:model.defer="namaket" type="text" class="w-full px-2 py-2 border rounded shadow appearance-non" id="namaket" autocomplete="off">
                             @error('namaket')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror
                         </div>
                         <div class="py-2">
                             <label>Jenis</label>
-                            <select wire:model="jenis" class="form-control">
+                            <select wire:model.defer="jenis" class="form-control">
                                 <option value="">Pilih Jenis</option>
                                 <option >Pemasukan</option>
                                 <option >Pengeluaran</option>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="py-2">
                             <label for="harga">Harga</label>
-                            <input wire:model="harga" type="text" class="w-full px-2 py-2 border rounded shadow appearance-non" id="harga" autocomplete="off">
+                            <input wire:model.defer="harga" type="text" class="w-full px-2 py-2 border rounded shadow appearance-non" id="harga" autocomplete="off">
                             @error('harga')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror

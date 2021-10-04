@@ -20,11 +20,11 @@
                     <div>
                         <div class="px-1 py-2">
                             <input wire:model="idbon" type="hidden" class="w-full px-2 py-2 border rounded shadow appearance-non" id="idbon" >
-                            <input wire:model="tanggal" type="date" class="w-1/3 px-2 py-2 ml-4 border rounded shadow appearance-non" id="tanggal" autocomplete="off">
+                            <input wire:model.defer="tanggal" type="date" class="w-1/3 px-2 py-2 ml-4 border rounded shadow appearance-non" id="tanggal" autocomplete="off">
                             @error('tanggal')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror
-                            <select wire:model="pegawai_id" class="w-1/2 px-2 py-2 border rounded shadow appearance-non">
+                            <select wire:model.defer="pegawai_id" class="w-1/2 px-2 py-2 border rounded shadow appearance-non">
                                 <option value="">Pilih Pegawai</option>
                                 @foreach ($pegawai as $p)
                                 <option value="{{ $p->id }}">{{ $p->nama }}</option>
@@ -32,7 +32,7 @@
                             </select>
                         </div>
                         <div class="py-2">
-                            <input wire:model="jumlah" type="text" class="w-1/3 px-2 py-2 ml-4 border rounded shadow appearance-non" id="jumlah" autocomplete="off" placeholder="Jumlah" >
+                            <input wire:model.defer="jumlah" type="text" class="w-1/3 px-2 py-2 ml-4 border rounded shadow appearance-non" id="jumlah" autocomplete="off" placeholder="Jumlah" >
                             @error('jumlah')
                             <h1 class="text-red-500">{{ $message }}</h1>
                             @enderror
